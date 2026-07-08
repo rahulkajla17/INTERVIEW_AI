@@ -1,35 +1,34 @@
-# 🎯 Interview AI (yt-genai)
+# 🎯 Interview AI
 
-**Interview AI** is an intelligent, AI-powered preparation platform designed to help candidates prepare for their dream jobs. By analyzing a target job description and evaluating a candidate's profile (either from a PDF resume or a self-description), the system automatically generates customized interview preparation resources, match scores, severity-based skill gaps, and preparation roadmaps using Google's Gemini generative AI.
+An intelligent interview preparation platform designed to help candidates prepare for their target job roles. By analyzing job descriptions against the candidate's resume or self-description, the platform generates customized technical/behavioral questions, match scores, severity-based skill gaps, and preparation roadmaps.
 
 ---
 
 ## 🚀 Key Features
 
-*   **Custom Strategy Generation**: Paste a job description, upload a PDF resume or self-description, and get an instant, custom preparation plan.
-*   **Structured Technical & Behavioral Questions**: Gemini-generated interview questions mapped directly to the skills needed for the role, complete with the *Intention* behind the question and *Model Answers*.
-*   **Personalized Preparation Roadmap**: A detailed day-by-day plan mapping out what subjects, tasks, and exercises to focus on before the interview.
-*   **Resume Optimization & PDF Export**: Dynamically generate tailored resumes and export them as clean PDFs (powered by Puppeteer).
-*   **Match Score & Skill Gap Analysis**: High/Medium/Low severity badge scoring showcasing how well the profile aligns with the role.
-*   **User Authentication**: JWT-based secure authorization with support for logout blacklists and session persistence.
+*   **Custom Strategy Generation**: Custom plan based on target job description and candidate profile.
+*   **Technical & Behavioral Questions**: Curated questions, intentions, and model answers.
+*   **Preparation Roadmap**: Day-by-day study roadmap focusing on key skills.
+*   **Resume Optimization & PDF Export**: Tailor resumes and export them as clean PDFs.
+*   **Match Score & Skill Gaps**: Highlights match percentage and skill gaps.
+*   **Authentication**: JWT-based session security.
 
 ---
 
 ## 🛠️ Technology Stack
 
 ### Frontend
-*   **Core**: React (v19) + Vite (for lightning-fast building and HMR)
-*   **Routing**: React Router (v7)
-*   **Styles**: SCSS (Sass) utilizing modern scoped styles, custom variables, and transition-based micro-animations
-*   **Icons**: Clean, modern SVG icons for high pixel-density styling
+*   **Core**: React + Vite
+*   **Routing**: React Router
+*   **Styles**: SCSS (Sass)
 
 ### Backend
-*   **Server**: Node.js + Express (v5)
-*   **Database**: MongoDB (via Mongoose ODM)
-*   **AI SDK**: `@google/genai` (Official Google GenAI SDK for Gemini models)
-*   **Resume Parsing**: `pdf-parse` (Extracts text content from uploaded PDFs)
-*   **PDF Generation**: `puppeteer` (Headless browser rendering HTML to PDF)
-*   **Validation**: `zod` & `zod-to-json-schema` (Strict schema definitions for structured JSON outputs from GenAI)
+*   **Server**: Node.js + Express
+*   **Database**: MongoDB (Mongoose)
+*   **AI SDK**: `@google/genai`
+*   **Resume Parsing**: `pdf-parse`
+*   **PDF Generation**: `puppeteer`
+*   **Validation**: `zod` & `zod-to-json-schema`
 
 ---
 
@@ -37,26 +36,26 @@
 
 ```
 INTERVIEW_AI_Complete/
-├── Backend/                 # Express Server and MongoDB Database Layer
+├── Backend/                 # Express Server and Database Layer
 │   ├── src/
-│   │   ├── config/          # MongoDB and environment configurations
-│   │   ├── controllers/     # Route logic for auth and interviews
-│   │   ├── middlewares/     # JWT authentication, file uploading
-│   │   ├── models/          # Mongoose database schemas (User, InterviewReport)
+│   │   ├── config/          # Configurations
+│   │   ├── controllers/     # Route logic controllers
+│   │   ├── middlewares/     # Auth and upload middleware
+│   │   ├── models/          # Schemas (User, InterviewReport)
 │   │   ├── routes/          # Express route definitions
-│   │   └── services/        # AI prompt logic and PDF parsing/rendering
-│   ├── server.js            # Entry point for Backend server
+│   │   └── services/        # AI prompts & PDF generation logic
+│   ├── server.js            # Server entry point
 │   └── package.json
 │
-├── Frontend/                # React Vite SPA
+├── Frontend/                # React Vite Client
 │   ├── src/
 │   │   ├── features/
-│   │   │   ├── auth/        # Login/Register pages & components
-│   │   │   └── interview/   # Home, Interview Details, components & context
-│   │   ├── style/           # Global styles and custom button styles
+│   │   │   ├── auth/        # Auth pages & components
+│   │   │   └── interview/   # Home, Interview Details & contexts
+│   │   ├── style/           # Scoped styles
 │   │   ├── App.jsx          # Route container
-│   │   ├── main.jsx         # App bootstrapping
-│   │   └── style.scss       # Global CSS imports
+│   │   ├── main.jsx         # App bootstrap
+│   │   └── style.scss       # Global stylesheet
 │   ├── vite.config.js       # Vite configuration
 │   └── package.json
 └── README.md                # Project documentation
@@ -64,20 +63,14 @@ INTERVIEW_AI_Complete/
 
 ---
 
-## ⚙️ Prerequisites & Setup
+## ⚙️ Environment Setup
 
-### Backend Environment Variables
-Create a `.env` file inside the `Backend` directory containing:
+Create a `.env` file inside the `Backend` directory:
 
 ```env
-# MongoDB Connection URI
 MONGO_URI=mongodb://127.0.0.1:27017/interview-ai
-
-# JWT Secret key
-JWT_SECRET=your_jwt_secret_key_here
-
-# Google GenAI API Key (from Google AI Studio)
-GOOGLE_GENAI_API_KEY=your_gemini_api_key_here
+JWT_SECRET=your_jwt_secret_key
+GOOGLE_GENAI_API_KEY=your_gemini_api_key
 ```
 
 ---
@@ -85,7 +78,7 @@ GOOGLE_GENAI_API_KEY=your_gemini_api_key_here
 ## 💻 Installation & Local Development
 
 ### 1. Backend Setup
-1. Open a terminal and navigate to the `Backend` directory:
+1. Navigate to the `Backend` directory:
    ```bash
    cd Backend
    ```
@@ -93,13 +86,13 @@ GOOGLE_GENAI_API_KEY=your_gemini_api_key_here
    ```bash
    npm install
    ```
-3. Run the development server (runs nodemon on `server.js`):
+3. Run the development server:
    ```bash
    npm run dev
    ```
 
 ### 2. Frontend Setup
-1. Open a new terminal and navigate to the `Frontend` directory:
+1. Navigate to the `Frontend` directory:
    ```bash
    cd Frontend
    ```
@@ -111,7 +104,6 @@ GOOGLE_GENAI_API_KEY=your_gemini_api_key_here
    ```bash
    npm run dev
    ```
-4. Access the web app in your browser (typically `http://localhost:5173`).
 
 ---
 
@@ -119,12 +111,12 @@ GOOGLE_GENAI_API_KEY=your_gemini_api_key_here
 
 ### Authentication Routes (`/api/auth`)
 *   `POST /register` - Register a new candidate.
-*   `POST /login` - Log in with email/password. Sets access cookies.
-*   `GET /logout` - Clear cookies and blacklist the session token.
-*   `GET /get-me` - Get profile details of the currently logged-in user.
+*   `POST /login` - Log in with email/password.
+*   `GET /logout` - Log out and clear cookies.
+*   `GET /get-me` - Get profile details of the current logged-in user.
 
 ### Interview Routes (`/api/interview`)
-*   `POST /` - Generate a new strategy plan (requires Job Description + PDF Resume/Self-Description).
-*   `GET /` - Fetch all generated interview plans for the logged-in candidate.
-*   `GET /report/:interviewId` - Retrieve detailed preparation cards for a single interview report.
-*   `POST /resume/pdf/:interviewReportId` - Generates and returns a dynamically optimized PDF version of the candidate's resume based on the target job requirements.
+*   `POST /` - Generate a new strategy plan.
+*   `GET /` - Fetch all generated interview plans.
+*   `GET /report/:interviewId` - Retrieve detailed preparation cards for a single interview.
+*   `POST /resume/pdf/:interviewReportId` - Generates and returns a dynamically optimized PDF version of the candidate's resume.
