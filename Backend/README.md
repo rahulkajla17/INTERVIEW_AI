@@ -1,20 +1,21 @@
-# 🎨 Interview AI - Frontend
+# 📡 Interview AI - Backend
 
-This is the React + Vite single page application (SPA) for the **Interview AI** application.
+This is the Express backend server for the **Interview AI** application.
 
 ## 🚀 Getting Started
 
-To run the frontend development server:
+To run the backend development server:
 
 1. Navigate to this directory:
    ```bash
-   cd Frontend
+   cd Backend
    ```
 2. Install dependencies:
    ```bash
    npm install
    ```
-3. Run the development server:
+3. Create your `.env` configuration file (refer to [Root README](../README.md#Backend-Environment-Variables) for details).
+4. Run the development server:
    ```bash
    npm run dev
    ```
